@@ -3,15 +3,14 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { Moon, Sun, Phone, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -59,9 +58,11 @@ export function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="flex items-center space-x-3">
-              <img 
+              <Image 
                 src="https://etitconsultancy.net/wp-content/uploads/2021/12/cropped-logo-1024x739-1.png" 
                 alt="Et-IT Consultancy" 
+                width={40}
+                height={40}
                 className="h-10 w-auto object-contain"
                 onError={(e) => {
                   // Fallback to text logo if image fails to load

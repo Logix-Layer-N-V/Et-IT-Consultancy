@@ -244,7 +244,7 @@ export default function Home() {
             Contact us today for a free consultation and discover how we can help your business grow.
           </p>
           
-          {/* Form Container - Ready for n8n Integration */}
+          {/* Form Container - Ready for automation workflow Integration */}
           <div className="bg-card rounded-lg border border-border p-8 shadow-lg">
             <div className="text-center py-12">
               <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -252,11 +252,11 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-semibold text-foreground mb-4">Contact Form</h3>
               <p className="text-muted-foreground mb-6">
-                This space is ready for your n8n form integration.
+                This space is ready for your automation workflow form integration.
               </p>
               <div className="bg-muted/50 rounded-lg p-6 border-2 border-dashed border-border">
                 <p className="text-sm text-muted-foreground">
-                  Embed your n8n form here by replacing this placeholder content
+                  Embed your automation workflow form here by replacing this placeholder content
                 </p>
               </div>
             </div>

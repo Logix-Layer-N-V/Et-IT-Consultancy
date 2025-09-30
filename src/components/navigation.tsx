@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils"
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [imageError, setImageError] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -58,27 +59,24 @@ export function Navigation() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#home" className="flex items-center space-x-3">
-              <Image 
-                src="https://etitconsultancy.net/wp-content/uploads/2021/12/cropped-logo-1024x739-1.png" 
-                alt="Et-IT Consultancy" 
-                width={40}
-                height={40}
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  // Fallback to text logo if image fails to load
-                  e.currentTarget.style.display = 'none';
-                  const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                  if (fallback) {
-                    fallback.style.display = 'flex';
-                  }
-                }}
-              />
-              <div className="hidden items-center space-x-2">
-                <div className="flex items-center space-x-1">
-                  <span className="font-bold text-xl text-primary">Et</span>
-                  <span className="font-bold text-xl text-blue-500">IT</span>
+              {!imageError ? (
+                <Image 
+                  src="https://etitconsultancy.net/wp-content/uploads/2021/12/cropped-logo-1024x739-1.png" 
+                  alt="Et-IT Consultancy" 
+                  width={40}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                  style={{ width: 'auto', height: '40px' }}
+                  onError={() => setImageError(true)}
+                />
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-1">
+                    <span className="font-bold text-xl text-primary">Et</span>
+                    <span className="font-bold text-xl text-blue-500">IT</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </a>
           </div>
 

@@ -8,12 +8,22 @@ interface UseScrollAnimationOptions {
   triggerOnce?: boolean
 }
 
-export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
+export function useScrollAnimation<T extends HTMLElement = HTMLElement>(
+  options: UseScrollAnimationOptions = {}
+) {
   const { threshold = 0.1, rootMargin = '0px', triggerOnce = true } = options
   const [isVisible, setIsVisible] = useState(false)
-  const ref = useRef<HTMLElement>(null)
+  const [mounted, setMounted] = useState(false)
+  const ref = useRef<T>(null)
+
+  // Ensure component is mounted on client before enabling animations
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
+    if (!mounted) return
+
     const currentRef = ref.current
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -41,7 +51,7 @@ export function useScrollAnimation(options: UseScrollAnimationOptions = {}) {
         observer.unobserve(currentRef)
       }
     }
-  }, [threshold, rootMargin, triggerOnce])
+  }, [mounted, threshold, rootMargin, triggerOnce])
 
-  return { ref, isVisible }
+  return { ref, isVisible: mounted && isVisible } as const
 }
